@@ -299,29 +299,14 @@ end
 delete(gcp) % terminate parallel session
 toc
 
-adjS = reshape(adjShufMat,[size(adj,1),size(adj,2),n_test]);
-
-
-% histograms
-figure
-hIn = histogram(r_in,'Normalization','probability','Facecolor','blue')
-hold on
-hOut = histogram(r_out,'Normalization','probability','Facecolor','red')
-hNet = histogram(r_emp2null,'Normalization','probability','Facecolor','k')
-
-ylabel('Probability')
-xlabel('Correlation Coefficient');
-legend('In-strength', 'Out-strength','Network','Location','North');
-set(gcf,'renderer','painters')
-
 
 %% Correlations histograms (separate)
 maxY = .25;
 
 figure
-hIn = histogram(r_in,'Normalization','probability','Facecolor','blue')
+hIn = histogram(r_in,'Normalization','probability','Facecolor','blue');
 hold on
-hOut = histogram(r_out,'Normalization','probability','Facecolor','red')
+hOut = histogram(r_out,'Normalization','probability','Facecolor','red');
 ylabel('Probability')
 xlabel('Correlation Coefficient');
 legend('In-strength', 'Out-strength','Location','Northwest');
@@ -331,7 +316,7 @@ set(gcf,'renderer','painters')
 
 
 figure
-hNet = histogram(r_emp2null,'Normalization','probability','Facecolor','k')
+hNet = histogram(r_emp2Shuf,'Normalization','probability','Facecolor','k');
 
 ylabel('Probability')
 xlabel('Correlation Coefficient');
@@ -343,12 +328,12 @@ set(gcf,'renderer','painters')
 %
 r_inMean = mean(r_in)
 r_outMean = mean(r_out)
-r_netMean = mean(r_emp2null)
+r_netMean = mean(r_emp2Shuf)
 
 r_inMedian = median(r_in)
 r_outMedian = median(r_out)
-r_netMedian = median(r_emp2null)
+r_netMedian = median(r_emp2Shuf)
 
 r_inSter = std(r_in)
 r_outSter = std(r_out)
-r_netSter = std(r_emp2null)
+r_netSter = std(r_emp2Shuf)
